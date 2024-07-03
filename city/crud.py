@@ -32,10 +32,13 @@ async def create_city(
         db: AsyncSession,
         city: schemas.CityCreate
 ) -> models.City:
-    db_city = (models.City
-               (name=city.name,
-                additional_info=city.additional_info)
-               )
+    db_city = (
+        models.City
+        (
+            name=city.name,
+            additional_info=city.additional_info
+        )
+    )
     db.add(db_city)
     await db.commit()
     await db.refresh(db_city)
